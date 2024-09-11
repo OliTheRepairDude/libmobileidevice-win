@@ -46,7 +46,7 @@ jobs:
         repoPatched=("libimobiledevice" "libideviceactivation-JanusPatch")
          for repo in "${repoR[@]}"; do
             echo "Building $repoR..."
-            git clone --depth=1 --recursive "https://github.com/OliTheRepairDude/$repoR"
+            git clone --depth=1 --recursive "https://github.com/libimobiledevice/$repoR"
             pushd "$repoR" > /dev/null
             ./autogen.sh CC=gcc CXX=g++ --enable-debug --without-cython
             make -j install
