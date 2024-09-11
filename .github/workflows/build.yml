@@ -83,7 +83,7 @@ jobs:
                                       -name "libcrypto*.dll" -o \
                                       -name "libssl*.dll" \) \
                                       -exec cp -v {} rel \;
-        tar -C rel -cJvf libimobile-suite-latest_${{ matrix.arch }}-${{ matrix.msystem }}.tar.xz .
+        tar -C rel -cJvf libimobile-suite-latest_${{ matrix.arch }}-${{ matrix.msystem }}_$timestamp.tar.xz .
 
     - name: publish release
       env:
