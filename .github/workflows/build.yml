@@ -43,14 +43,6 @@ jobs:
       run: |
         repos=("libplist" "libimobiledevice-glue" "libusbmuxd" "libtatsu" "ideviceinstaller" "libirecovery" "idevicerestore")
         repoPatched=("libimobiledevice" "libideviceactivation-JanusPatch")
-        for repo in "${repos[@]}"; do
-            echo "Building $repo..."
-            git clone --depth=1 --recursive "https://github.com/libimobiledevice/$repo"
-            pushd "$repo" > /dev/null
-            ./autogen.sh CC=gcc CXX=g++ --enable-debug --without-cython
-            make -j install
-            popd > /dev/null
-        done
         for repo in "${repoPatched[@]}"; do
             echo "Building $repoPatched..."
             git clone --depth=1 --recursive "https://github.com/OliTheRepairDude/$repoPatched"
@@ -59,6 +51,15 @@ jobs:
             make -j install
             popd > /dev/null
         done
+        for repo in "${repos[@]}"; do
+            echo "Building $repo..."
+            git clone --depth=1 --recursive "https://github.com/libimobiledevice/$repo"
+            pushd "$repo" > /dev/null
+            ./autogen.sh CC=gcc CXX=g++ --enable-debug --without-cython
+            make -j install
+            popd > /dev/null
+        done
+        
 
     - name: prepare release
       run: |
