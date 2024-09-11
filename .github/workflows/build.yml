@@ -44,10 +44,10 @@ jobs:
         reposR=("libplist" "libimobiledevice-glue" "libusbmuxd")
         repos=("libtatsu" "ideviceinstaller" "libirecovery" "idevicerestore")
         repoPatched=("libimobiledevice" "libideviceactivation-JanusPatch")
-        for repo in "${repoR[@]}"; do
-            echo "Building $repoR..."
-            git clone --depth=1 --recursive "https://github.com/libimobiledevice/$repoR"
-            pushd "$repoR" > /dev/null
+        for repo in "${reposR[@]}"; do
+            echo "Building $reposR..."
+            git clone --depth=1 --recursive "https://github.com/libimobiledevice/$reposR"
+            pushd "$reposR" > /dev/null
             ./autogen.sh CC=gcc CXX=g++ --enable-debug --without-cython
             make -j install
             popd > /dev/null
